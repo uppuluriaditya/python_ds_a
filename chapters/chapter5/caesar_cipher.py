@@ -11,7 +11,6 @@ class CaesarCipher:
             decoder[k] = chr((k - shift) % 26 + ord('A'))
         self._forward = ''.join(encoder)
         self._backward = ''.join(decoder)
-        print("FORWARD: {}\nBACKARD: {}".format(self._forward, self._backward))
     
     def encrypt(self, message):
         """ Returns string representing encrypted message """
