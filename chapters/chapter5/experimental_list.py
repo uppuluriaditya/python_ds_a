@@ -11,8 +11,8 @@ def experiment(num):
         print('Length: {0:3d}; Size in bytes: {1:4d}'.format(a, b))
         data.append(i)
 
-if __name__ == "__main__":
-    experiment(27)
+def test_experiment():
+    experiment(10)
 
     """OUTPUT
     Length:   0; Size in bytes:   64
@@ -25,7 +25,10 @@ if __name__ == "__main__":
     Length:   7; Size in bytes:  128
     Length:   8; Size in bytes:  128
     Length:   9; Size in bytes:  192
-
     """
+
+if __name__ == "__main__":
+    test_experiment()
+
 
 

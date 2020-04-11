@@ -11,40 +11,58 @@ class DynamicArray:
 
     def __init__(self):
         """ Create an Empty Array """
-        self._n = 0
+        self._len = 0
         self._capacity = 1
-        self._A = self._make_array(self._capacity)
+        self._array = self._make_array(self._capacity)
     
     def __len__(self):
         """ Returns the number of elements stored in the array """
-        return self._n
+        return self._len
 
     def __get_item__(self, index):
         """ Returns the item at the specified at index . Raises error otherwise """
-        if not 0 <= index < self._n:
-            raise IndexError('invalid index')
-        return self._A[index]
+        if not 0 <= index < self._len:
+            raise IndexError('invalid index {}'.format(index))
+        return self._array[index]
 
     def append(self, item):
         """ Adds the object to the end of array """
-        if self._n == self._capacity:
+        if self._len == self._capacity:
             self._resize(2 * self._capacity)
-        self._A[self._n] = item
-        self._n += 1
+        self._array[self._len] = item
+        self._len += 1
     
+    def insert(self, index, item):
+        """ Inserts the item at the specified index """
+        if self._len == self._capacity:
+            self._resize(2 * self._capacity)
+
+        for j in range(self._len, index, -1):
+            self._array[j] = self._array[j-1]
+
+        self._array[index] = item
+        self._len += 1
+
     def _resize(self, capacity):
         """ Resizes the array to the specified capacity """
         B = self._make_array(capacity)
-        for k in range(self._n):
-            B[k] = self._A[k]
-        self._A = B
+        for k in range(self._len):
+            B[k] = self._array[k]
+        self._array = B
         self._capacity = capacity
 
     def _make_array(self, capacity):
         """ Returns a new array of specified capacity """
         return (capacity * ctypes.py_object)()
+    
+    def __str__(self):
+        return '[' + ','.join([str(self._array[i]) for i in range(self._len)]) + ']'
 
 if __name__ == "__main__":
     a = DynamicArray()
     a.append(4)
     a.append(5)
+    a.append(6)
+    print(a)
+    a.insert(4, 7)
+    print(a)
