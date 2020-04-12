@@ -23,7 +23,4 @@ if __name__ == "__main__":
     print(matching_brackets(')(()){([()])}'))
 
     print(matching_brackets('({[])}'))
-
-
-
             
