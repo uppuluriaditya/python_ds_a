@@ -2,18 +2,21 @@ class Empty(Exception):
     """ Class to raise an exception if the stack is empty """
     pass
 
+class Full(Exception):
+    """ Class to raise an exception if the stack is full """
+
 class ArrayStack:
     """ Stack implementation using list data strcture """
 
     def __init__(self, capacity=10):
         """ Iniitialize a list """
-        self._data = []
+        self._data = [] 
         self._capacity = capacity
     
     def push(self, item):
         """ Pushes the item into the list """
         if self.__len__() == self._capacity:
-            self.pop()
+            raise Full("Stack is full")
         self._data.append(item)
     
     def __len__(self):
