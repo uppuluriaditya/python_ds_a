@@ -5,12 +5,15 @@ class Empty(Exception):
 class ArrayStack:
     """ Stack implementation using list data strcture """
 
-    def __init__(self):
+    def __init__(self, capacity=10):
         """ Iniitialize a list """
         self._data = []
+        self._capacity = capacity
     
     def push(self, item):
         """ Pushes the item into the list """
+        if self.__len__() == self._capacity:
+            self.pop()
         self._data.append(item)
     
     def __len__(self):
@@ -35,20 +38,17 @@ class ArrayStack:
         if self.is_empty():
             raise Empty("Stack is empty")
         return self._data.pop()
+    
+    def __str__(self):
+        """ Shows the number of elements in the stack """
+        return ','.join(str(item) for item in self._data)
 
 if __name__ == "__main__":
-    stack = ArrayStack()
-    stack.push(5)
-    stack.push(9)
-    print(len(stack))
-    stack.pop()
-    stack.pop()
-    try:
-        stack.pop()
-    except Empty as err:
-        print(err)
+    stack = ArrayStack(3)
 
     stack.push(5)
     stack.push(9)
-    print(stack.top())
+    stack.push(10)
+    stack.push(11)
+    print(stack)
     
