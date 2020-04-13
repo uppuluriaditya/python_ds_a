@@ -37,6 +37,11 @@ class ArrayQueue:
         self._data[self._front] = None
         self._front = (self._front + 1) % len(self._data)
         self._size -= 1
+
+        # Reduce the size of the queue to half if 1/4 th of the list is free
+        if 0 < self._size < len(self._data) // 4:
+            self._resize(len(self._data) // 2)
+        
         return front_val
     
     def enqueue(self, item):
