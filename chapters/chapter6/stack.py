@@ -1,9 +1,7 @@
-class Empty(Exception):
-    """ Class to raise an exception if the stack is empty """
-    pass
+import sys
+sys.path.append('../')
 
-class Full(Exception):
-    """ Class to raise an exception if the stack is full """
+from utils import Empty, Full
 
 class ArrayStack:
     """ Stack implementation using list data strcture """

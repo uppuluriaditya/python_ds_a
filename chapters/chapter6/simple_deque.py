@@ -1,4 +1,7 @@
-from stack import Empty
+import sys
+sys.path.append('../')
+
+from utils import Empty
 
 class ArrayDeque:
     DEFAULT_CAPACITY = 10
